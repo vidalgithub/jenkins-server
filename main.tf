@@ -26,7 +26,7 @@ resource "aws_lb" "load_balancer" {
   }
 }
 
-# Create ALB listener
+# Create ALB listener for http request
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.load_balancer.arn
   port              = 80
@@ -42,7 +42,7 @@ resource "aws_lb_listener" "http" {
   }
 }
 
-
+# Create ALB listener for https request and terminate he ssl
 resource "aws_lb_listener" "https" {
   load_balancer_arn = aws_lb.load_balancer.arn
   port              = 443
