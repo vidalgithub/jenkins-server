@@ -14,21 +14,21 @@ data "aws_acm_certificate" "example_certificate" {
 data "aws_vpc" "vpc" {
   filter {
     name   = "tag:Name"
-    values = ["default"]
+    values = ["default"]  # Your vpc name
   }
 }
 
 data "aws_subnet" "subnet1" {   
   filter {
     name   = "tag:Name"
-    values = ["default-1"]
+    values = ["default-1"]  # Your 1st public subnet name 
   }
 }
 
 data "aws_subnet" "subnet2" {
   filter {
     name   = "tag:Name"
-    values = ["default-2"]
+    values = ["default-2"]   # Your 2nd public subnet name
   }
 }
 
@@ -42,7 +42,7 @@ data "aws_security_group" "instance_sg" {
   name = var.instance_sg_name
 }
 
-# Output the security group ID
+# Output the security group ID  - OPTIONAL
 output "security_group_id" {
   value = data.aws_security_group.lb_sg.id
 }
@@ -53,11 +53,11 @@ data "aws_ami" "custom_ami" {
   owners      = ["self"]
   filter {
     name   = "tag:Name"
-    values = ["my-bastion-host-jenkins"]
+    values = ["my-bastion-host-jenkins"]   # The name of your ustom ami
   }
 }
 
-# Output the custom AMI ID
+# Output the custom AMI ID - OPTIONAL
 output "custom_ami_id" {
   value = data.aws_ami.custom_ami.id
 }
