@@ -42,7 +42,6 @@ variable "instance_type" {
 
 
 
-
 /* variable "common_tags" {
   type = map(any)
 } */
