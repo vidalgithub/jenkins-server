@@ -53,7 +53,7 @@ data "aws_ami" "custom_ami" {
   owners      = ["self"]
   filter {
     name   = "tag:Name"
-    values = ["my-bastion-host-jenkins"]   # The name of your ustom ami
+    values = ["my-bastion-host-jenkins"]   # The name of your custom ami
   }
 }
 
