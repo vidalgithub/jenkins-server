@@ -23,7 +23,6 @@ variable "keypair" {
   default = "jenkins"  
 }
 
-
 variable "lb_sg_name" {
   type = string
   default = "jenkins-server"  # Replace with the name of an existing  security-group you want to assign to your loadbalancer
@@ -34,13 +33,10 @@ variable "instance_sg_name" {
   default = "jenkins-server"  # Replace with the name of an existing  security-group you want to assign to your ec2-instance
 }
 
-
 variable "instance_type" {
   type = string
   default = "t2.micro"
 }
-
-
 
 /* variable "common_tags" {
   type = map(any)
