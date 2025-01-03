@@ -69,7 +69,7 @@ resource "aws_lb_target_group" "jenkins" {
 
 # Create EC2 instance
 resource "aws_instance" "jenkins_instance" {
-  ami           = data.aws_ami.custom_ami.id  # Replace with your desired AMI ID. Make sure you package the software of your choice (eg. jenkins and dependencies) in the image.
+  ami           = data.aws_ami.ubuntu.id  # Replace with your desired AMI ID. Make sure you package the software of your choice (eg. jenkins and dependencies) in the image.
   instance_type = var.instance_type  # Replace with your desired instance type
   subnet_id     = data.aws_subnet.subnet1.id 
   key_name      = var.keypair
