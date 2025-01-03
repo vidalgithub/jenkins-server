@@ -32,30 +32,30 @@ data "aws_subnet" "subnet2" {
   }
 }
 
-# Data block to fetch security group ID
-data "aws_security_group" "lb_sg" {
-  name = var.lb_sg_name
-}
+# # Data block to fetch security group ID
+# data "aws_security_group" "lb_sg" {
+#   name = var.lb_sg_name
+# }
 
-# Data block to fetch security group ID
-data "aws_security_group" "instance_sg" {
-  name = var.instance_sg_name
-}
+# # Data block to fetch security group ID
+# data "aws_security_group" "instance_sg" {
+#   name = var.instance_sg_name
+# }
 
-# Output the security group ID  - OPTIONAL
-output "security_group_id" {
-  value = data.aws_security_group.lb_sg.id
-}
+# # Output the security group ID  - OPTIONAL
+# output "security_group_id" {
+#   value = data.aws_security_group.lb_sg.id
+# }
 
-# Data block to fetch a custom AMI ID in your account
-data "aws_ami" "custom_ami" {
-  most_recent = true
-  owners      = ["self"]
-  filter {
-    name   = "tag:Name"
-    values = ["my-bastion-host-jenkins"]   # The name of your custom ami
-  }
-}
+# # Data block to fetch a custom AMI ID in your account
+# data "aws_ami" "custom_ami" {
+#   most_recent = true
+#   owners      = ["self"]
+#   filter {
+#     name   = "tag:Name"
+#     values = ["my-bastion-host-jenkins"]   # The name of your custom ami
+#   }
+# }
 
 # Data block to fetch a custom UBUNTU AMI ID in your account
 data "aws_ami" "ubuntu" {
@@ -79,8 +79,8 @@ data "aws_ami" "ubuntu" {
   }
 }
 
-# Output the custom AMI ID - OPTIONAL
-output "custom_ami_id" {
-  value = data.aws_ami.custom_ami.id
-}
+# # Output the custom AMI ID - OPTIONAL
+# output "custom_ami_id" {
+#   value = data.aws_ami.custom_ami.id
+# }
 
