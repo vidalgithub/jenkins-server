@@ -13,7 +13,7 @@ resource "aws_lb" "load_balancer" {
   name               = "jenkins-alb"
   load_balancer_type = "application"
   security_groups    = [
-    data.aws_security_group.instance_sg.id
+    aws_security_group.jenkins-docker.id
   ]
  
   subnets = [
@@ -74,7 +74,7 @@ resource "aws_instance" "jenkins_instance" {
   subnet_id     = data.aws_subnet.subnet1.id 
   key_name      = var.keypair
   security_groups = [
-    data.aws_security_group.instance_sg.id
+    aws_security_group.jenkins-docker.id
   ]
 
     user_data = <<-EOF
@@ -168,5 +168,45 @@ resource "aws_lb_listener_rule" "jenkins" {
     host_header {
       values = ["${var.subdomain}.${var.domain_name}"]
     }
+  }
+}
+
+resource "aws_security_group" "jenkins-docker" {
+  name        = "jenkins-docker"
+  description = "Allow inbound traffic to specific ports and outbound to all destinations"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
