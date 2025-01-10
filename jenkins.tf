@@ -1,4 +1,3 @@
-
 # Create a record set for the subdomain jenkins.
 resource "aws_route53_record" "subdomain" {
   zone_id = data.aws_route53_zone.route53_zone.zone_id
@@ -13,7 +12,7 @@ resource "aws_lb" "load_balancer" {
   name               = "jenkins-alb"
   load_balancer_type = "application"
   security_groups    = [
-    aws_security_group.jenkins-docker.id
+    aws_security_group.jenkins-server.id
   ]
  
   subnets = [
@@ -74,7 +73,7 @@ resource "aws_instance" "jenkins_instance" {
   subnet_id     = data.aws_subnet.subnet1.id 
   key_name      = var.keypair
   security_groups = [
-    aws_security_group.jenkins-docker.id
+    aws_security_group.jenkins-server.id
   ]
 
     user_data = <<-EOF
@@ -171,8 +170,8 @@ resource "aws_lb_listener_rule" "jenkins" {
   }
 }
 
-resource "aws_security_group" "jenkins-docker" {
-  name        = "jenkins-docker"
+resource "aws_security_group" "jenkins-server" {
+  name        = "jenkins-server"
   description = "Allow inbound traffic to specific ports and outbound to all destinations"
 
   ingress {
