@@ -38,6 +38,21 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
+variable "vpc_name" {
+  type = string
+  default = "default"
+}
+
+variable "subnet1_name" {
+  type = string
+  default = "default-1"
+}
+
+variable "subnet2_name" {
+  type = string
+  default = "default-2"
+}
+
 /* variable "common_tags" {
   type = map(any)
 } */
