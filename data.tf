@@ -14,21 +14,21 @@ data "aws_acm_certificate" "example_certificate" {
 data "aws_vpc" "vpc" {
   filter {
     name   = "tag:Name"
-    values = ["default"]  # Your vpc name
+    values = [var.vpc_name] # ["default"]  # Your vpc name
   }
 }
 
 data "aws_subnet" "subnet1" {   
   filter {
     name   = "tag:Name"
-    values = ["default-1"]  # Your 1st public subnet name 
+    values = [var.subnet1_name] # ["default-1"]  # Your 1st public subnet name 
   }
 }
 
 data "aws_subnet" "subnet2" {
   filter {
     name   = "tag:Name"
-    values = ["default-2"]   # Your 2nd public subnet name
+    values = [var.subnet2_name] # ["default-2"]   # Your 2nd public subnet name
   }
 }
 
